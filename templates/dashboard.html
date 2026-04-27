@@ -1,0 +1,25 @@
+﻿{% extends "base.html" %}
+{% block title %}Личный кабинет | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>Личный кабинет</h2>
+    <p><strong>Пользователь:</strong> {{ current_user.username }}</p>
+    <p><strong>ФИО:</strong> {{ current_user.full_name }}</p>
+    <p><strong>Статус:</strong> {{ "активен" if current_user.is_active else "неактивен" }}</p>
+    <p><strong>Основная роль:</strong> {{ primary_role_name or "не назначена" }}</p>
+    <p><strong>Метод аутентификации:</strong> {{ auth_method }}</p>
+</section>
+
+<section class="card">
+    <h3>Доступные разделы</h3>
+    {% if available_sections %}
+        <div class="tag-list">
+            {% for section in available_sections %}
+                <a class="section-chip" href="{{ section.path }}">{{ section.title }}</a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Для вашей роли пока не настроены разделы.</p>
+    {% endif %}
+</section>
+{% endblock %}

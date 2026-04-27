@@ -1,0 +1,20 @@
+﻿{% extends "base.html" %}
+{% block title %}Регистрация | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card small-card">
+    <h2>Регистрация</h2>
+    <p>Новый пользователь получает роль <code>student</code> по умолчанию.</p>
+    <form method="post" action="/register" class="form-grid">
+        <label>Логин
+            <input type="text" name="username" required minlength="3">
+        </label>
+        <label>Пароль
+            <input type="password" name="password" required minlength="6">
+        </label>
+        <label>ФИО
+            <input type="text" name="full_name" required>
+        </label>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</section>
+{% endblock %}

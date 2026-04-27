@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Виртуальный деканат{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container row-between">
+            <h1>Виртуальный деканат</h1>
+            <nav class="top-nav">
+                <a href="/">Главная</a>
+                {% if current_user %}
+                    <a href="/dashboard">Личный кабинет</a>
+                    {% for section in available_sections %}
+                        <a href="{{ section.path }}">{{ section.title }}</a>
+                    {% endfor %}
+                    <a href="/logout">Выход</a>
+                {% else %}
+                    <a href="/register">Регистрация</a>
+                    <a href="/login">Вход</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% if flash %}
+            <div class="flash flash-{{ flash.category }}">
+                {{ flash.message }}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="container footer"></footer>
+</body>
+</html>

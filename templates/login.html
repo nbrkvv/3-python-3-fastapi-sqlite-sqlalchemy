@@ -1,0 +1,16 @@
+﻿{% extends "base.html" %}
+{% block title %}Вход | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card small-card">
+    <h2>Вход в систему</h2>
+    <form method="post" action="/login" class="form-grid">
+        <label>Логин
+            <input type="text" name="username" required>
+        </label>
+        <label>Пароль
+            <input type="password" name="password" required>
+        </label>
+        <button type="submit">Войти</button>
+    </form>
+</section>
+{% endblock %}

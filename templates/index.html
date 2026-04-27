@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>Виртуальный деканат</h2>
+    <p>
+        Это базовая заготовка информационной системы с регистрацией, авторизацией
+        и разграничением доступа по ролям.
+    </p>
+    <div class="grid-two">
+        <div>
+            <h3>Основные возможности</h3>
+            <ul>
+                <li>Регистрация пользователей</li>
+                <li>Вход и выход из системы</li>
+                <li>Личный кабинет авторизованного пользователя</li>
+                <li>Доступ к разделам по роли пользователя</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Текущие данные</h3>
+            <p>Пользователей в системе: <strong>{{ users_count }}</strong></p>
+            {% if current_user %}
+                <p>Вы вошли как: <strong>{{ current_user.username }}</strong></p>
+                <p>Роль: <strong>{{ primary_role_name or "не назначена" }}</strong></p>
+            {% else %}
+                <p>Для доступа к разделам выполните вход.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="card">
+    <h3>Тестовые пользователи</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Логин</th>
+            <th>Пароль</th>
+            <th>Роль</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><td>admin</td><td>admin123</td><td>admin</td></tr>
+        <tr><td>student</td><td>student123</td><td>student</td></tr>
+        <tr><td>teacher</td><td>teacher123</td><td>teacher</td></tr>
+        <tr><td>dean</td><td>dean123</td><td>dean_office</td></tr>
+        </tbody>
+    </table>
+</section>
+{% endblock %}
