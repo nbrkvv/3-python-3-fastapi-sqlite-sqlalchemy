@@ -18,7 +18,6 @@ def _get_or_create_role(
 
     role.description = description
     role.level = level
-    role.parent_id = None
     return role
 
 
