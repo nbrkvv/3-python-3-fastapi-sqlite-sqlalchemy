@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Аналитика | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>{{ section.title }}</h2>
+    <p>{{ section.description }}</p>
+</section>
+
+<section class="card">
+    <h3>Отчеты и анализ</h3>
+    <div class="grid-two">
+        <a href="/analytics/performance" class="section-link">
+            <strong>Статистика успеваемости</strong>
+            <p>Средние баллы по дисциплинам</p>
+        </a>
+        <a href="/analytics/failing-students" class="section-link">
+            <strong>Неуспевающие студенты</strong>
+            <p>Список студентов с низкой успеваемостью</p>
+        </a>
+    </div>
+</section>
+
+<style>
+.section-link { display: block; padding: 16px; border: 1px solid #ddd; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.3s; }
+.section-link:hover { background: #f5f5f5; border-color: #0b5cab; }
+.section-link strong { display: block; margin-bottom: 8px; }
+.section-link p { margin: 0; font-size: 0.9em; color: #666; }
+.grid-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+</style>
+{% endblock %}

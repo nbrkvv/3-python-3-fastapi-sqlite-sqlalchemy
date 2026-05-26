@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Статистика успеваемости | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>Статистика успеваемости</h2>
+    <p>Анализ среднего балла по дисциплинам.</p>
+</section>
+
+{% if stats %}
+<section class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Дисциплина</th>
+                <th>Кол-во оценок</th>
+                <th>Средний балл</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat in stats %}
+            <tr>
+                <td>{{ stat.discipline }}</td>
+                <td>{{ stat.count }}</td>
+                <td>{{ stat.avg_grade }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% else %}
+<section class="card">
+    <p>Данных для отчета не найдено.</p>
+</section>
+{% endif %}
+
+<style>
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+th { background: #f9f9f9; font-weight: bold; }
+tr:hover { background: #f5f5f5; }
+</style>
+{% endblock %}

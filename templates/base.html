@@ -17,7 +17,7 @@
                     {% for section in available_sections %}
                         <a href="{{ section.path }}">{{ section.title }}</a>
                     {% endfor %}
-                    <a href="/logout">Выход</a>
+                    <a href="/logout">Выход ({{ current_user.username }})</a>
                 {% else %}
                     <a href="/register">Регистрация</a>
                     <a href="/login">Вход</a>

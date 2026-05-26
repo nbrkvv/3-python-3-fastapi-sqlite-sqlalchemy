@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Расписание | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <div class="row-between">
+        <h2>Расписание</h2>
+        <a href="/academic-process/schedule/add" class="btn">Добавить занятие</a>
+    </div>
+</section>
+
+{% if schedules %}
+<section class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Группа</th>
+                <th>Дисциплина</th>
+                <th>Преподаватель</th>
+                <th>День</th>
+                <th>Время</th>
+                <th>Кабинет</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in schedules %}
+            <tr>
+                <td>{{ schedule.group.name }}</td>
+                <td>{{ schedule.discipline.name }}</td>
+                <td>{{ schedule.teacher.full_name }}</td>
+                <td>{{ schedule.day_of_week }}</td>
+                <td>{{ schedule.time_start }} - {{ schedule.time_end }}</td>
+                <td>{{ schedule.classroom }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% else %}
+<section class="card">
+    <p>Расписание не составлено.</p>
+</section>
+{% endif %}
+
+<style>
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+th { background: #f9f9f9; font-weight: bold; }
+tr:hover { background: #f5f5f5; }
+.row-between { display: flex; justify-content: space-between; align-items: center; }
+.btn { padding: 8px 16px; background: #0b5cab; color: white; text-decoration: none; border-radius: 8px; }
+.btn:hover { background: #083d7a; }
+</style>
+{% endblock %}

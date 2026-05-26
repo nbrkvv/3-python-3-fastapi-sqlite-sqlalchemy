@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Ведомость аттестации | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>Ведомость аттестации</h2>
+</section>
+
+<section class="card small-card">
+    <form method="get" class="form-grid">
+        <label>
+            Группа
+            <select name="group_id" onchange="this.form.submit()">
+                <option value="">-- Выберите группу --</option>
+                {% for group in groups %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Дисциплина
+            <select name="discipline_id" onchange="this.form.submit()">
+                <option value="">-- Выберите дисциплину --</option>
+                {% for disc in disciplines %}
+                <option value="{{ disc.id }}">{{ disc.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+    </form>
+</section>
+
+<p style="padding: 0 18px; color: #666;">Выберите группу и дисциплину для просмотра ведомости.</p>
+
+<style>
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+label { display: grid; gap: 6px; }
+select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+</style>
+{% endblock %}

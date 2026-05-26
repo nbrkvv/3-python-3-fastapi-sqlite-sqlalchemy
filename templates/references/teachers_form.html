@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Добавить преподавателя | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card small-card">
+    <h2>Добавить преподавателя</h2>
+    <form method="post" class="form-grid">
+        <label>
+            ФИО *
+            <input type="text" name="full_name" required>
+        </label>
+        <label>
+            Email *
+            <input type="email" name="email" required>
+        </label>
+        <label>
+            Кафедра *
+            <select name="department_id" required>
+                <option value="">-- Выберите кафедру --</option>
+                {% for dept in departments %}
+                <option value="{{ dept.id }}">{{ dept.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <button type="submit">Добавить</button>
+        <a href="/references/teachers">Отмена</a>
+    </form>
+</section>
+
+<style>
+.form-grid { display: grid; gap: 12px; }
+label { display: grid; gap: 6px; }
+input, select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+button, a { padding: 10px 16px; background: #0b5cab; color: white; border: none; border-radius: 8px; text-decoration: none; cursor: pointer; }
+button:hover, a:hover { background: #083d7a; }
+a { display: inline-block; }
+</style>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Неуспевающие студенты | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>Неуспевающие студенты</h2>
+    <p>Список студентов со средним баллом ниже 3.0.</p>
+</section>
+
+{% if failing %}
+<section class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Студент</th>
+                <th>Группа</th>
+                <th>Средний балл</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in failing %}
+            <tr>
+                <td>{{ student.student }}</td>
+                <td>{{ student.group }}</td>
+                <td>{{ student.avg_grade }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% else %}
+<section class="card">
+    <p>Неуспевающих студентов не найдено.</p>
+</section>
+{% endif %}
+
+<style>
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+th { background: #f9f9f9; font-weight: bold; }
+tr:hover { background: #f5f5f5; }
+</style>
+{% endblock %}

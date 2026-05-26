@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Ввод результатов аттестации | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>Ввод результатов аттестации</h2>
+    <p>Добавьте оценки студентов за экзамены и зачеты.</p>
+</section>
+
+<section class="card small-card">
+    <form method="post" class="form-grid">
+        <label>
+            Группа *
+            <select name="group_id" required onchange="filterStudents()">
+                <option value="">-- Выберите группу --</option>
+                {% for group in groups %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Студент *
+            <select name="student_id" required id="student_select">
+                <option value="">-- Выберите студента --</option>
+                {% for student in students %}
+                <option value="{{ student.id }}" data-group="{{ student.group_id }}">{{ student.full_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Дисциплина *
+            <select name="discipline_id" required>
+                <option value="">-- Выберите дисциплину --</option>
+                {% for disc in disciplines %}
+                <option value="{{ disc.id }}">{{ disc.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Преподаватель *
+            <select name="teacher_id" required>
+                <option value="">-- Выберите преподавателя --</option>
+                {% for teacher in teachers %}
+                <option value="{{ teacher.id }}">{{ teacher.full_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Тип аттестации *
+            <select name="attestation_type" required>
+                <option value="">-- Выберите тип --</option>
+                <option value="exam">Экзамен</option>
+                <option value="credit">Зачет</option>
+            </select>
+        </label>
+        <label>
+            Оценка (2-5) *
+            <input type="number" name="grade" min="2" max="5" step="0.5" required placeholder="4">
+        </label>
+        <label>
+            Дата *
+            <input type="date" name="date" required>
+        </label>
+        <button type="submit">Добавить оценку</button>
+    </form>
+</section>
+
+<style>
+.form-grid { display: grid; gap: 12px; }
+label { display: grid; gap: 6px; }
+input, select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+button { padding: 10px 16px; background: #0b5cab; color: white; border: none; border-radius: 8px; cursor: pointer; }
+button:hover { background: #083d7a; }
+</style>
+
+<script>
+function filterStudents() {
+    const groupId = document.querySelector('[name="group_id"]').value;
+    const options = document.querySelectorAll('#student_select option');
+    options.forEach(opt => {
+        if (!opt.value) return;
+        opt.hidden = opt.dataset.group !== groupId;
+    });
+}
+</script>
+{% endblock %}

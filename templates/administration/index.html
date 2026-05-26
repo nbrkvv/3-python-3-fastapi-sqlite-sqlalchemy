@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Администрирование | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <h2>{{ section.title }}</h2>
+    <p>{{ section.description }}</p>
+</section>
+
+<section class="card">
+    <h3>Управление системой</h3>
+    <div class="grid-two">
+        <a href="/administration/users" class="section-link">
+            <strong>Пользователи</strong>
+            <p>Управление учетными записями</p>
+        </a>
+        <a href="/administration/action-log" class="section-link">
+            <strong>Журнал действий</strong>
+            <p>История изменений в системе</p>
+        </a>
+    </div>
+</section>
+
+<style>
+.section-link { display: block; padding: 16px; border: 1px solid #ddd; border-radius: 8px; text-decoration: none; color: inherit; transition: all 0.3s; }
+.section-link:hover { background: #f5f5f5; border-color: #0b5cab; }
+.section-link strong { display: block; margin-bottom: 8px; }
+.section-link p { margin: 0; font-size: 0.9em; color: #666; }
+.grid-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+</style>
+{% endblock %}

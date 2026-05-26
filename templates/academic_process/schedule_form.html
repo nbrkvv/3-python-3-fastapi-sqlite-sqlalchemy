@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Добавить занятие | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card small-card">
+    <h2>Добавить занятие в расписание</h2>
+    <form method="post" class="form-grid">
+        <label>
+            Группа *
+            <select name="group_id" required>
+                <option value="">-- Выберите группу --</option>
+                {% for group in groups %}
+                <option value="{{ group.id }}">{{ group.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Дисциплина *
+            <select name="discipline_id" required>
+                <option value="">-- Выберите дисциплину --</option>
+                {% for disc in disciplines %}
+                <option value="{{ disc.id }}">{{ disc.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Преподаватель *
+            <select name="teacher_id" required>
+                <option value="">-- Выберите преподавателя --</option>
+                {% for teacher in teachers %}
+                <option value="{{ teacher.id }}">{{ teacher.full_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            День недели *
+            <select name="day_of_week" required>
+                <option value="">-- Выберите день --</option>
+                <option value="Понедельник">Понедельник</option>
+                <option value="Вторник">Вторник</option>
+                <option value="Среда">Среда</option>
+                <option value="Четверг">Четверг</option>
+                <option value="Пятница">Пятница</option>
+            </select>
+        </label>
+        <label>
+            Время начала *
+            <input type="time" name="time_start" required>
+        </label>
+        <label>
+            Время окончания *
+            <input type="time" name="time_end" required>
+        </label>
+        <label>
+            Кабинет *
+            <input type="text" name="classroom" required placeholder="101">
+        </label>
+        <button type="submit">Добавить</button>
+        <a href="/academic-process/schedule">Отмена</a>
+    </form>
+</section>
+
+<style>
+.form-grid { display: grid; gap: 12px; }
+label { display: grid; gap: 6px; }
+input, select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+button, a { padding: 10px 16px; background: #0b5cab; color: white; border: none; border-radius: 8px; text-decoration: none; cursor: pointer; }
+button:hover, a:hover { background: #083d7a; }
+a { display: inline-block; }
+</style>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Преподаватели | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <div class="row-between">
+        <h2>Преподаватели</h2>
+        <a href="/references/teachers/add" class="btn">Добавить преподавателя</a>
+    </div>
+</section>
+
+{% if teachers %}
+<section class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Email</th>
+                <th>Кафедра</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for teacher in teachers %}
+            <tr>
+                <td>{{ teacher.full_name }}</td>
+                <td>{{ teacher.email }}</td>
+                <td>{{ teacher.department.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% else %}
+<section class="card">
+    <p>Преподавателей не найдено.</p>
+</section>
+{% endif %}
+
+<style>
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+th { background: #f9f9f9; font-weight: bold; }
+tr:hover { background: #f5f5f5; }
+.row-between { display: flex; justify-content: space-between; align-items: center; }
+.btn { padding: 8px 16px; background: #0b5cab; color: white; text-decoration: none; border-radius: 8px; }
+.btn:hover { background: #083d7a; }
+</style>
+{% endblock %}

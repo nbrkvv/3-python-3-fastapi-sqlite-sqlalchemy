@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Добавить группу | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card small-card">
+    <h2>Добавить учебную группу</h2>
+    <form method="post" class="form-grid">
+        <label>
+            Название группы *
+            <input type="text" name="name" required placeholder="ПИ-101">
+        </label>
+        <label>
+            Описание
+            <textarea name="description" rows="3"></textarea>
+        </label>
+        <button type="submit">Добавить</button>
+        <a href="/references/groups">Отмена</a>
+    </form>
+</section>
+
+<style>
+.form-grid { display: grid; gap: 12px; }
+label { display: grid; gap: 6px; }
+input, textarea { padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+button, a { padding: 10px 16px; background: #0b5cab; color: white; border: none; border-radius: 8px; text-decoration: none; cursor: pointer; }
+button:hover, a:hover { background: #083d7a; }
+a { display: inline-block; }
+</style>
+{% endblock %}

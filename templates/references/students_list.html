@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Студенты | Виртуальный деканат{% endblock %}
+{% block content %}
+<section class="card">
+    <div class="row-between">
+        <h2>Студенты</h2>
+        <a href="/references/students/add" class="btn">Добавить студента</a>
+    </div>
+</section>
+
+{% if students %}
+<section class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Email</th>
+                <th>Группа</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.full_name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.group.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% else %}
+<section class="card">
+    <p>Студентов не найдено.</p>
+</section>
+{% endif %}
+
+<style>
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+th { background: #f9f9f9; font-weight: bold; }
+tr:hover { background: #f5f5f5; }
+.row-between { display: flex; justify-content: space-between; align-items: center; }
+.btn { padding: 8px 16px; background: #0b5cab; color: white; text-decoration: none; border-radius: 8px; }
+.btn:hover { background: #083d7a; }
+</style>
+{% endblock %}
